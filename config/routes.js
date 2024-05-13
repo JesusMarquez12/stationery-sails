@@ -21,6 +21,8 @@ module.exports.routes = {
 
   'GET /api/v1/': 'home/index',
 
+  'POST /api/v1/orders': 'order/create',
+
 
   /***************************************************************************
   *                                                                          *
