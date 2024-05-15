@@ -35,7 +35,13 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'POST /api/v1/products': 'product/create',
+  'GET    /api/v1/products':             'product/index',
+  'GET    /api/v1/products/new':         'product/new',
+  'GET    /api/v1/products/:name':       'product/show',
+  'POST   /api/v1/products':             'product/create',
+  'GET    /api/v1/products/:name/edit':  'product/edit',
+  'PATCH  /api/v1/products/:name':       'product/update',
+  'DELETE /api/v1/products/:name':       'product/destroy',
 
   /***************************************************************************
   *                                                                          *
