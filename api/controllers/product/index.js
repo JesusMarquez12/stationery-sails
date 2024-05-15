@@ -8,10 +8,6 @@ module.exports = {
 
 
   inputs: {
-    name: {
-      type: 'string',
-      required: true
-    },
   },
 
 
@@ -27,30 +23,17 @@ module.exports = {
   },
 
 
-  fn: async function (inputs, exits) {
-    // try {
-    //   let newUser = await Product.create({
-    //     name: inputs.name,
-    //     description: inputs.description,
-    //     stock: 0,
-    //     price: inputs.price
-    //   }).fetch();
-    //   // All done.
-    //   return exits.success({
-    //     message: 'The product was successfully listed in the inventory'
-    //   });
-    // } catch (error){
-    //   if (error.code === 'E_UNIQUE') {
-    //     return exits.existentProduct({
-    //       message: 'The product already present in the inventory',
-    //     });
-    //   }
+  fn: async function (_, exits) {
+    try {
+      const products = await Product.find({});
 
-    //   return exits.error({
-    //     message: 'Oops :) an error occurred',
-    //     error: error.message,
-    //   });
-    // }
-    return;
+      // All done.
+      return exits.success(products);
+    } catch (error){
+      return exits.error({
+        message: 'Oops :) an error occurred',
+        error: error.message,
+      });
+    }
   }
 };

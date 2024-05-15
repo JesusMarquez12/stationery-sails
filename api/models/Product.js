@@ -50,5 +50,19 @@ module.exports = {
 
   },
 
+  // ASCII ART FONT: Calvin S
+  // ╔═╗╦ ╦╔═╗╔╦╗╔═╗╔╦╗  ╔═╗╔═╗╔╗╔╔═╗╔╦╗╔═╗╔╗╔╔╦╗╔═╗
+  // ║  ║ ║╚═╗ ║ ║ ║║║║  ║  ║ ║║║║╚═╗ ║ ╠═╣║║║ ║ ╚═╗
+  // ╚═╝╚═╝╚═╝ ╩ ╚═╝╩ ╩  ╚═╝╚═╝╝╚╝╚═╝ ╩ ╩ ╩╝╚╝ ╩ ╚═╝
+
+  placeholderInstance: {
+    createdAt: 0,
+    updatedAt: 0,
+    id: 0,
+    name: "",
+    description: "",
+    stock: 0,
+    price: 0
+  },
 };
 

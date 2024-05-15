@@ -23,7 +23,7 @@ module.exports = {
 
   exits: {
     success: {
-      statusCode: 201,
+      statusCode: 200,
       description: 'The product was successfully updated',
     },
     productNotFound: {
@@ -38,29 +38,33 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
-    //   try {
-    //     let newUser = await Product.create({
-    //       name: inputs.name,
-    //       description: inputs.description,
-    //       stock: 0,
-    //       price: inputs.price
-    //     }).fetch();
-    //     // All done.
-    //     return exits.success({
-    //       message: 'The product was successfully listed in the inventory'
-    //     });
-    //   } catch (error){
-    //     if (error.code === 'E_UNIQUE') {
-    //       return exits.existentProduct({
-    //         message: 'The product already present in the inventory',
-    //       });
-    //     }
+    try {
+      const updatedProduct = await Product.updateOne({ name: inputs.name})
+      .set({ 
+        description: inputs.description,
+        price: inputs.price,
+      });
 
-    //     return exits.error({
-    //       message: 'Oops :) an error occurred',
-    //       error: error.message,
-    //     });
-    //   }
-    return;
+      
+      if (updatedProduct === undefined) {
+        return exits.productNotFound({
+          message: 'The product was not found in the inventory',
+        });
+      }
+
+      // All done.
+      return exits.success(updatedProduct);
+    } catch (error){
+      if (error.code === 'E_UNIQUE') {
+        return exits.existentProduct({
+          message: 'The product already present in the inventory',
+        });
+      }
+
+      return exits.error({
+        message: 'Oops :) an error occurred',
+        error: error.message,
+      });
+    }
   }
 };

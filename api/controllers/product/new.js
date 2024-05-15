@@ -8,8 +8,8 @@ module.exports = {
 
   exits: {
     success: {
-      statusCode: 201,
-      description: "The product was successfully listed in the inventory",
+      statusCode: 200,
+      description: "Here some product placeholder",
     },
     error: {
       statusCode: 500,
@@ -18,29 +18,18 @@ module.exports = {
   },
 
   fn: async function (_, exits) {
-    // try {
-    //   let newUser = await Product.create({
-    //     name: inputs.name,
-    //     description: inputs.description,
-    //     stock: 0,
-    //     price: inputs.price,
-    //   }).fetch();
-    //   // All done.
-    //   return exits.success({
-    //     message: "The product was successfully listed in the inventory",
-    //   });
-    // } catch (error) {
-    //   if (error.code === "E_UNIQUE") {
-    //     return exits.existentProduct({
-    //       message: "The product already present in the inventory",
-    //     });
-    //   }
+    try {
+      const placeholderProduct = Product.placeholderInstance;
 
-    //   return exits.error({
-    //     message: "Oops :) an error occurred",
-    //     error: error.message,
-    //   });
-    // }
-    return
+      console.log('New product:', placeholderProduct);
+      // All done.
+
+      return exits.success(placeholderProduct);
+    } catch (error) {
+      return exits.error({
+        message: "Oops :) an error occurred",
+        error: error.message,
+      });
+    }
   },
 };

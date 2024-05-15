@@ -32,29 +32,24 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
-    // try {
-    //   let newUser = await Product.create({
-    //     name: inputs.name,
-    //     description: inputs.description,
-    //     stock: 0,
-    //     price: inputs.price
-    //   }).fetch();
-    //   // All done.
-    //   return exits.success({
-    //     message: 'The product was successfully listed in the inventory'
-    //   });
-    // } catch (error){
-    //   if (error.code === 'E_UNIQUE') {
-    //     return exits.existentProduct({
-    //       message: 'The product already present in the inventory',
-    //     });
-    //   }
+    try {
+      const product = await Product.findOne({ name: inputs.name });
+      
+      if (product === undefined) {
+        return exits.productNotFound({
+          message: 'The product was not found in the inventory',
+        });
+      }
 
-    //   return exits.error({
-    //     message: 'Oops :) an error occurred',
-    //     error: error.message,
-    //   });
-    // }
-    return
+      // All done.
+      return exits.success(product);
+
+    } catch (error){
+
+      return exits.error({
+        message: 'Oops :) an error occurred',
+        error: error.message,
+      });
+    }
   }
 };

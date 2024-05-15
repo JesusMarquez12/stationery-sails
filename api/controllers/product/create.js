@@ -39,16 +39,14 @@ module.exports = {
 
   fn: async function (inputs, exits) {
     try {
-      let newUser = await Product.create({
+      const newProduct = await Product.create({
         name: inputs.name,
         description: inputs.description,
         stock: 0,
         price: inputs.price
       }).fetch();
       // All done.
-      return exits.success({
-        message: 'The product was successfully listed in the inventory'
-      });
+      return exits.success(newProduct);
     } catch (error){
       if (error.code === 'E_UNIQUE') {
         return exits.existentProduct({
