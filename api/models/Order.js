@@ -33,5 +33,14 @@ module.exports = {
 
   },
 
+  //  ╔═╗╦ ╦╔═╗╔╦╗╔═╗╔╦╗  ╔╦╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗╔═╗
+  //  ║  ║ ║╚═╗ ║ ║ ║║║║  ║║║║╣  ║ ╠═╣║ ║ ║║╚═╗
+  //  ╚═╝╚═╝╚═╝ ╩ ╚═╝╩ ╩  ╩ ╩╚═╝ ╩ ╩ ╩╚═╝═╩╝╚═╝
+
+  customToJSON: function() {
+    // Return a shallow copy of this record with the database data removed
+    return _.omit(this, ['id', 'createdAt', 'updatedAt'])
+  },
+
 };
 

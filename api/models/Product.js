@@ -51,9 +51,9 @@ module.exports = {
   },
 
   // ASCII ART FONT: Calvin S
-  // ╔═╗╦ ╦╔═╗╔╦╗╔═╗╔╦╗  ╔═╗╔═╗╔╗╔╔═╗╔╦╗╔═╗╔╗╔╔╦╗╔═╗
-  // ║  ║ ║╚═╗ ║ ║ ║║║║  ║  ║ ║║║║╚═╗ ║ ╠═╣║║║ ║ ╚═╗
-  // ╚═╝╚═╝╚═╝ ╩ ╚═╝╩ ╩  ╚═╝╚═╝╝╚╝╚═╝ ╩ ╩ ╩╝╚╝ ╩ ╚═╝
+  //  ╔═╗╦ ╦╔═╗╔╦╗╔═╗╔╦╗  ╔═╗╔═╗╔╗╔╔═╗╔╦╗╔═╗╔╗╔╔╦╗╔═╗
+  //  ║  ║ ║╚═╗ ║ ║ ║║║║  ║  ║ ║║║║╚═╗ ║ ╠═╣║║║ ║ ╚═╗
+  //  ╚═╝╚═╝╚═╝ ╩ ╚═╝╩ ╩  ╚═╝╚═╝╝╚╝╚═╝ ╩ ╩ ╩╝╚╝ ╩ ╚═╝
 
   placeholderInstance: {
     createdAt: 0,
@@ -63,6 +63,15 @@ module.exports = {
     description: "",
     stock: 0,
     price: 0
+  },
+
+  //  ╔═╗╦ ╦╔═╗╔╦╗╔═╗╔╦╗  ╔╦╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗╔═╗
+  //  ║  ║ ║╚═╗ ║ ║ ║║║║  ║║║║╣  ║ ╠═╣║ ║ ║║╚═╗
+  //  ╚═╝╚═╝╚═╝ ╩ ╚═╝╩ ╩  ╩ ╩╚═╝ ╩ ╩ ╩╚═╝═╩╝╚═╝
+
+  customToJSON: function() {
+    // Return a shallow copy of this record with the database data removed
+    return _.omit(this, ['id', 'createdAt', 'updatedAt'])
   },
 };
 
